@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: transparent;
+            margin: 0;
+            display: flex;
+			flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #timer {
+            font-size: 120px;
+            color: white;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+        }
+		 #title {
+            font-size: 60px;
+            color: white;
+			text-align:center;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin-bottom: 20px;
+			text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+<h1 id="title">Comenzamos en...</h1>
+	
+    <div id="timer">05:00</div>
+    <script>
+        let t = 300;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            let m = String(Math.floor(t / 60)).padStart(2, '0');
+            let s = String(t % 60).padStart(2, '0');
+            
+            timerElement.innerText = m + ":" + s;
+            
+            if (t > 0) {
+                t--;
+            } else {
+                clearInterval(countdown);
+                timerElement.innerText = "¡Empezamos!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
