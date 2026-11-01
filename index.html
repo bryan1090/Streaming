@@ -12,6 +12,13 @@
             align-items: center;
             height: 100vh;
         }
+
+        /* Oculta el contenedor del temporizador por defecto */
+        #content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
         #timer {
             font-size: 120px;
             color: white;
@@ -28,29 +35,78 @@
             margin-bottom: 20px;
 			text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
         }
+
+        /* Botón de Play */
+        #playBtn {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 4px solid white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #playBtn:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        /* Triángulo de ícono Play generado con CSS */
+        #playIcon {
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 32px solid white;
+            margin-left: 8px; /* Centra ópticamente el triángulo */
+        }
     </style>
 </head>
 <body>
-<h1 id="title">Comenzando en...</h1>
-	
-    <div id="timer">05:00</div>
+<!-- Botón visible al cargar -->
+    <div id="playBtn">
+        <div id="playIcon"></div>
+    </div>	
+<!-- Contenido del temporizador (oculto al inicio) -->
+    <div id="content">
+        <h1 id="title">Pronto comenzamos...</h1>
+        <div id="timer">05:00</div>
+    </div>
     <script>
-        let t = 300;
+       
+
+const playBtn = document.getElementById('playBtn');
+        const content = document.getElementById('content');
+         
         const timerElement = document.getElementById('timer');
         
-        const countdown = setInterval(() => {
-            let m = String(Math.floor(t / 60)).padStart(2, '0');
-            let s = String(t % 60).padStart(2, '0');
-            
-            timerElement.innerText = m + ":" + s;
-            
-            if (t > 0) {
-                t--;
-            } else {
-                clearInterval(countdown);
-                timerElement.innerText = "¡Empezamos!";
-            }
-        }, 1000);
+        let t = 300;
+        let countdown;
+       playBtn.addEventListener('click', () => {
+            // Oculta el botón y muestra el título y el temporizador
+            playBtn.style.display = 'none';
+            content.style.display = 'flex';
+
+            // Inicia la cuenta regresiva
+            countdown = setInterval(() => {
+                let m = String(Math.floor(t / 60)).padStart(2, '0');
+                let s = String(t % 60).padStart(2, '0');
+                
+                timerElement.innerText = m + ":" + s;
+                
+                if (t > 0) {
+                    t--;
+                } else {
+                    clearInterval(countdown);
+                    timerElement.innerText = "¡Empezamos!";
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
