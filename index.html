@@ -87,7 +87,11 @@ const playBtn = document.getElementById('playBtn');
         
         let t = 300;
         let countdown;
-       playBtn.addEventListener('click', () => {
+       
+
+       function startTimer(){
+
+       
             // Oculta el botón y muestra el título y el temporizador
             playBtn.style.display = 'none';
             content.style.display = 'flex';
@@ -106,7 +110,23 @@ const playBtn = document.getElementById('playBtn');
                     timerElement.innerText = "¡Empezamos!";
                 }
             }, 1000);
-        });
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+        
+
+        if (urlParams.has('autostart') ) {
+            // Si la URL tiene "?auto-start=on", arranca automáticamente con un respiro de 1 segundo
+            setTimeout(() => {
+                startTimer();
+            }, 1000);
+        } else {
+            // Si se abre de forma normal en un navegador, espera el clic en el botón
+            playBtn.addEventListener('click', () => {
+                startTimer();
+            });
+        }
+
     </script>
 </body>
 </html>
