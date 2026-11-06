@@ -116,11 +116,14 @@ const playBtn = document.getElementById('playBtn');
         
 
         if (urlParams.has('autostart') ) {
-            // Si la URL tiene "?auto-start=on", arranca automáticamente con un respiro de 1 segundo
-            setTimeout(() => {
-                startTimer();
-            }, 1000);
+            // Si la URL tiene "?auto-start=on", arranca automáticamente siempre que la pestaña esté visible
+             document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    startTimer();
+                }
+            });
         } else {
+           
             // Si se abre de forma normal en un navegador, espera el clic en el botón
             playBtn.addEventListener('click', () => {
                 startTimer();
