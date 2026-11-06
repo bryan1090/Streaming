@@ -1,0 +1,21 @@
+{
+  "name": "streaming",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "countdown.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryan1090/Streaming.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryan1090/Streaming/issues"
+  },
+  "homepage": "https://github.com/bryan1090/Streaming#readme"
+}

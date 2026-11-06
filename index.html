@@ -77,40 +77,13 @@
         <h1 id="title">Pronto comenzamos...</h1>
         <div id="timer">05:00</div>
     </div>
-    <script>
+    
        
-
-const playBtn = document.getElementById('playBtn');
-        const content = document.getElementById('content');
-         
-        const timerElement = document.getElementById('timer');
-        
-        let t = 300;
-        let countdown;
-       
-
-       function startTimer(){
+  
+       <script type="module">
+            import { startTimer } from './countdown.js';
 
        
-            // Oculta el botón y muestra el título y el temporizador
-            playBtn.style.display = 'none';
-            content.style.display = 'flex';
-
-            // Inicia la cuenta regresiva
-            countdown = setInterval(() => {
-                let m = String(Math.floor(t / 60)).padStart(2, '0');
-                let s = String(t % 60).padStart(2, '0');
-                
-                timerElement.innerText = m + ":" + s;
-                
-                if (t > 0) {
-                    t--;
-                } else {
-                    clearInterval(countdown);
-                    timerElement.innerText = "¡Empezamos!";
-                }
-            }, 1000);
-            }
 
             const urlParams = new URLSearchParams(window.location.search);
         
