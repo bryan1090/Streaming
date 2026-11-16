@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <style>
@@ -7,7 +8,7 @@
             background-color: transparent;
             margin: 0;
             display: flex;
-			flex-direction: column;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -19,6 +20,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         #timer {
             font-size: 120px;
             color: white;
@@ -26,14 +28,15 @@
             font-weight: bold;
             text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
         }
-		 #title {
+
+        #title {
             font-size: 60px;
             color: white;
-			text-align:center;
+            text-align: center;
             font-family: sans-serif;
             font-weight: bold;
             margin-bottom: 20px;
-			text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
         }
 
         /* Botón de Play */
@@ -63,40 +66,47 @@
             border-top: 20px solid transparent;
             border-bottom: 20px solid transparent;
             border-left: 32px solid white;
-            margin-left: 8px; /* Centra ópticamente el triángulo */
+            margin-left: 8px;
+            /* Centra ópticamente el triángulo */
         }
     </style>
 </head>
+
 <body>
-<!-- Botón visible al cargar -->
+    <!-- Botón visible al cargar -->
     <div id="playBtn">
         <div id="playIcon"></div>
-    </div>	
-<!-- Contenido del temporizador (oculto al inicio) -->
+    </div>
+    <!-- Contenido del temporizador (oculto al inicio) -->
     <div id="content">
         <h1 id="title">Pronto comenzamos...</h1>
         <div id="timer">05:00</div>
     </div>
-    
-       
-  
-       <script type="module">
-            import { startTimer } from './countdown.js';
 
-       
 
-            const urlParams = new URLSearchParams(window.location.search);
-        
 
-        if (urlParams.has('autostart') ) {
+    <script type="module">
+        import { startTimer } from './countdown.js';
+
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+
+        if (urlParams.has('autostart')) {
             // Si la URL tiene "?auto-start=on", arranca automáticamente siempre que la pestaña esté visible
-             document.addEventListener('visibilitychange', () => {
-                if (!document.hidden) {
+            // Verificación directa al cargar la página (para atrapar el estado inicial)
+            window.addEventListener('DOMContentLoaded', () => {
+
+                // Si al cargar el navegador ya considera que no está oculto, arranca de una vez
+                if (document.visibilityState === 'visible' || !document.hidden) {
                     startTimer();
                 }
             });
-        } else {
+
            
+        } else {
+
             // Si se abre de forma normal en un navegador, espera el clic en el botón
             playBtn.addEventListener('click', () => {
                 startTimer();
@@ -105,4 +115,5 @@
 
     </script>
 </body>
+
 </html>
