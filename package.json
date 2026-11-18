@@ -5,7 +5,7 @@
   "description": "",
   "main": "countdown.js",
   "scripts": {
-    "test": "node --test"
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/bryan1090/Streaming/issues"
   },
-  "homepage": "https://github.com/bryan1090/Streaming#readme"
+  "homepage": "https://github.com/bryan1090/Streaming#readme",
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {}
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "vitest": "^5.1.1"
+  }
 }

@@ -80,7 +80,7 @@
     <!-- Contenido del temporizador (oculto al inicio) -->
     <div id="content">
         <h1 id="title">Pronto comenzamos...</h1>
-        <div id="timer">05:00</div>
+        <div id="timer">__:__</div>
     </div>
 
 
@@ -91,19 +91,23 @@
 
 
         const urlParams = new URLSearchParams(window.location.search);
+        
+        const params = Array.from(urlParams.entries());
 
-
-        if (urlParams.has('autostart')) {
+        const min = params[1] ? parseInt(params[1]) : 0;
+        const seg = params[2] ? parseInt(params[2]) : 0;
+        if (urlParams.has('autostart')&& min!=undefined && seg!=undefined) {
             // Si la URL tiene "?auto-start=on", arranca automáticamente siempre que la pestaña esté visible
             // Verificación directa al cargar la página (para atrapar el estado inicial)
             window.addEventListener('DOMContentLoaded', () => {
 
                 // Si al cargar el navegador ya considera que no está oculto, arranca de una vez
                 if (document.visibilityState === 'visible' || !document.hidden) {
-                    startTimer();
+                    window.alert("min: "+min+" seg: "+seg);
+                    startTimer(min, seg);
                 }
             });
-
+            
            
         } else {
 
